@@ -3,6 +3,11 @@
 
 #include "../src/neuron.h"
 
+#include "print.h"
+
+#include <time.h>
+#include <fstream>
+
 #include <QObject>
 #include <QtTest/QtTest>
 
@@ -15,7 +20,7 @@ public:
 signals:
 
 private slots:
-    void write_read_neuron();
+    void test_write_read_neuron();
 };
 
 #endif // TESTNEURON_H

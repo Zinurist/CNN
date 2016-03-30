@@ -4,23 +4,39 @@
 #include "neuron.h"
 #include "types.h"
 
+#include <iostream>
+#include <time.h>
+
+
 class NeuralNetwork
 {
 public:
     NeuralNetwork(double default_val, const std::vector<int>& structure);
-    ~NeuralNetwork();
+    NeuralNetwork(const std::vector<int>& structure);
 
-    void process(values_t& input, values_t& output);
+    void process(const values_t& input, values_t& output);
+    values_t* process(const values_t& input);
+
     void randomize_values(int seed, double min, double max);
     void set_values(double default_val);
-    void set_value_at(double value, int layer, int neuron);
+    void set_bias(double default_val);
+    //void set_value_at(double value, int layer, int neuron);
 
-    void print();
+    void print() const;
 
-    int num_input;
-    int num_output;
-private:
-    network_t neurons;
+    size_t num_input;
+    size_t num_output;
+
+    //serialization
+    void NeuralNetwork::write_to(std::FILE* stream) const;
+    void NeuralNetwork::read_from(std::FILE* stream);
+    //friend declaration functions as forward declaration!
+    friend bool operator==(const NeuralNetwork& n1, const NeuralNetwork& n2);
+    friend std::ostream& operator<<(std::ostream& os, const NeuralNetwork& n);
+    friend std::istream& operator>>(std::istream& is, NeuralNetwork& n);
+
+//private:
+    network_t net;
 
 };
 

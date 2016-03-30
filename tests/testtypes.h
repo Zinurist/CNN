@@ -1,17 +1,25 @@
-#ifndef TYPESTEST_H
-#define TYPESTEST_H
+#ifndef TESTTYPES_H
+#define TESTTYPES_H
+
+#include "../src/types.h"
+
+#include "print.h"
 
 #include <QObject>
+#include <QtTest/QtTest>
 
-class TypesTest : public QObject
+class TestTypes : public QObject
 {
     Q_OBJECT
 public:
-    explicit TypesTest(QObject *parent = 0);
+    explicit TestTypes(QObject *parent = 0);
 
 signals:
 
-public slots:
+private slots:
+    void test_vector_abs();
+    void test_vector_arithmic();
+
 };
 
-#endif // TYPESTEST_H
+#endif // TESTTYPES_H

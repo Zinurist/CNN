@@ -10,11 +10,16 @@ TEMPLATE = app
 SOURCES += main.cpp\
     mainwindow.cpp \
     neuralnetwork.cpp \
-    neuron.cpp
+    neuron.cpp \
+    convolutionalneuralnetwork.cpp \
+    types.cpp \
+    training.cpp
 
 HEADERS  += mainwindow.h \
     neuralnetwork.h \
     neuron.h \
-    types.h
+    types.h \
+    convolutionalneuralnetwork.h \
+    training.h
 
 FORMS    += mainwindow.ui

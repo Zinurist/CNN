@@ -1,17 +1,26 @@
 #ifndef TESTNEURALNETWORK_H
 #define TESTNEURALNETWORK_H
 
-#include <QObject>
+#include "../src/neuralnetwork.h"
 
-class testneuralnetwork : public QObject
+#include "print.h"
+
+#include <time.h>
+#include <fstream>
+
+#include <QObject>
+#include <QtTest/QtTest>
+
+class TestNeuralNetwork : public QObject
 {
     Q_OBJECT
 public:
-    explicit testneuralnetwork(QObject *parent = 0);
+    explicit TestNeuralNetwork(QObject *parent = 0);
 
 signals:
 
-public slots:
+private slots:
+    void test_write_read_network();
 };
 
 #endif // TESTNEURALNETWORK_H

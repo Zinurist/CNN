@@ -16,19 +16,31 @@ TEMPLATE = app
 
 SOURCES += \
     main.cpp \
-    testneuron.cpp
+    testneuron.cpp \
+    testneuralnetwork.cpp \
+    testtypes.cpp \
+    testtraining.cpp
 
 HEADERS += \
-    testneuron.h
+    testneuron.h \
+    testneuralnetwork.h \
+    testtypes.h \
+    print.h \
+    testtraining.h
 
 
 SOURCES += ../src/mainwindow.cpp \
     ../src/neuralnetwork.cpp \
-    ../src/neuron.cpp
+    ../src/neuron.cpp \
+    ../src/convolutionalneuralnetwork.cpp \
+    ../src/types.cpp \
+    ../src/training.cpp
 
 HEADERS  += ../src/mainwindow.h \
     ../src/neuralnetwork.h \
     ../src/neuron.h \
-    ../src/types.h
+    ../src/convolutionalneuralnetwork.h \
+    ../src/types.h \
+    ../src/training.h
 
 FORMS    += ../src/mainwindow.ui

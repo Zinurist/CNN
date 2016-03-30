@@ -1,43 +1,58 @@
 #include "testneuron.h"
 
-
 TestNeuron::TestNeuron(QObject *parent) : QObject(parent)
 {
 
 }
 
 
-void TestNeuron::write_read_neuron()
+void TestNeuron::test_write_read_neuron()
 {
 
-    Neuron n(0,4);
-    Neuron n2(1,4);
+    srand(time(0));
+
+    Neuron n1(0,4);
+    Neuron n2(1,6);
+    Neuron n3(5,10);
+    Neuron n4(6,3);
 
 
-    n.randomize_connections(-5.0, 5.0);
+    n1.randomize_connections(-5.0, 5.0);
     FILE * f;
 
     f = fopen("testo.txt", "w");
-    n.write_to(f);
+    n1.write_to(f);
     fclose(f);
 
     f = fopen("testo.txt", "r");
     n2.read_from(f);
     fclose(f);
 
-    n.print();
-    n2.print();
-    QVERIFY(n.connections.size() == n2.connections.size());
+    if(NEURON_WRN){
+        n1.print();
+        n2.print();
+    }
+    QVERIFY(n1 == n2);
 
-    /*
-    std::fstream fs;
-    fs.open("testo2.txt", std::fstream::in|std::fstream::out|std::fstream::binary);
-    n.randomize_connections(-5.0,5.0);
-    n.print();
-    fs << n;
-    fs.seekg(0);
-    fs >> n2;
-    n2.print();
-    fs.close();*/
+
+
+    n3.randomize_connections(-5.0,5.0);
+    std::ifstream is;
+    std::ofstream os;
+
+    os.open("testo2.txt", std::fstream::out);
+    os << n3;
+    os.close();
+
+    is.open("testo2.txt", std::fstream::in);
+    is >> n4;
+    is.close();
+
+    if(NEURON_WRN){
+        n3.print();
+        n4.print();
+    }
+    QVERIFY(n3 == n4);
+
 
 }
