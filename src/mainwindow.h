@@ -50,6 +50,10 @@ private slots:
 
     void on_btn_decode_ae_clicked();
 
+    void on_btn_randomize1_ae_clicked();
+
+    void on_btn_randomize2_ae_clicked();
+
 private:
     Ui::MainWindow *ui;
 

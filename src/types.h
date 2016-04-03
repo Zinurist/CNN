@@ -39,6 +39,6 @@ values_t& operator*=(values_t& a, const values_t& b);
 values_t& operator/=(values_t& a, const values_t& b);
 
 //remove for certain bound checks
-//#define OPTIMIZED
+#define OPTIMIZED
 
 #endif // TYPES_H

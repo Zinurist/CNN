@@ -19,7 +19,7 @@
      <rect>
       <x>30</x>
       <y>10</y>
-      <width>581</width>
+      <width>611</width>
       <height>431</height>
      </rect>
     </property>
@@ -866,6 +866,19 @@
        </item>
       </layout>
      </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>80</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>iterations</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -958,111 +971,85 @@
        <number>10000</number>
       </property>
      </widget>
-     <widget class="QWidget" name="gridLayoutWidget_5">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>20</y>
-        <width>71</width>
-        <height>331</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="grid_output_ae">
-       <item row="8" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_48"/>
-       </item>
-       <item row="7" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_49"/>
-       </item>
-       <item row="7" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_50"/>
-       </item>
-       <item row="9" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_51"/>
-       </item>
-       <item row="8" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_52"/>
-       </item>
-       <item row="9" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_53"/>
-       </item>
-       <item row="1" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_54"/>
-       </item>
-       <item row="0" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_55"/>
-       </item>
-       <item row="1" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_56"/>
-       </item>
-       <item row="6" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_57"/>
-       </item>
-       <item row="5" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_58"/>
-       </item>
-       <item row="4" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_59"/>
-       </item>
-       <item row="2" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_60"/>
-       </item>
-       <item row="3" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_61"/>
-       </item>
-      </layout>
-     </widget>
      <widget class="QWidget" name="gridLayoutWidget_2">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>20</y>
-        <width>71</width>
+        <y>50</y>
+        <width>81</width>
         <height>331</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="grid_input_ae">
-       <item row="8" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_6"/>
-       </item>
        <item row="7" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_9"/>
-       </item>
-       <item row="7" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_8"/>
-       </item>
-       <item row="9" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_3"/>
-       </item>
-       <item row="8" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_5"/>
-       </item>
-       <item row="9" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_2"/>
-       </item>
-       <item row="1" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_10"/>
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_84">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_4"/>
-       </item>
-       <item row="1" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_7"/>
-       </item>
-       <item row="6" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_47"/>
-       </item>
-       <item row="5" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_46"/>
-       </item>
-       <item row="4" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_41"/>
-       </item>
-       <item row="2" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_43"/>
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_76">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_42"/>
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_79">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_78">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_77">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_80">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_81">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_82">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_83">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_85">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -1070,38 +1057,46 @@
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>20</y>
-        <width>71</width>
+        <y>50</y>
+        <width>81</width>
         <height>161</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="grid_middle_ae">
-       <item row="3" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_66"/>
-       </item>
-       <item row="4" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_67"/>
+       <item row="0" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_71">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_71"/>
-       </item>
-       <item row="0" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_70"/>
-       </item>
-       <item row="0" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_68"/>
-       </item>
-       <item row="3" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_62"/>
-       </item>
-       <item row="2" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_63"/>
-       </item>
-       <item row="2" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_64"/>
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_73">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_65"/>
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_72">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_74">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_75">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -1110,7 +1105,7 @@
        <rect>
         <x>120</x>
         <y>250</y>
-        <width>75</width>
+        <width>81</width>
         <height>23</height>
        </rect>
       </property>
@@ -1123,7 +1118,7 @@
        <rect>
         <x>220</x>
         <y>250</y>
-        <width>75</width>
+        <width>81</width>
         <height>23</height>
        </rect>
       </property>
@@ -1131,11 +1126,11 @@
        <string>Decode</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox">
+     <widget class="QCheckBox" name="cb_random_ae">
       <property name="geometry">
        <rect>
         <x>430</x>
-        <y>40</y>
+        <y>20</y>
         <width>101</width>
         <height>17</height>
        </rect>
@@ -1143,6 +1138,162 @@
       <property name="text">
        <string>Random values</string>
       </property>
+     </widget>
+     <widget class="QSpinBox" name="spin_sets_ae">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>40</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>1000000000</number>
+      </property>
+      <property name="singleStep">
+       <number>5</number>
+      </property>
+      <property name="value">
+       <number>20</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>40</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>sets</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>60</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>iterations</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_randomize1_ae">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>81</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Randomize</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_randomize2_ae">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>20</y>
+        <width>81</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Randomize</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>50</y>
+        <width>81</width>
+        <height>331</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="grid_output_ae">
+       <item row="0" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_86">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_88">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_87">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_89">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_90">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_91">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_92">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_93">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_94">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_95">
+         <property name="decimals">
+          <number>17</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>

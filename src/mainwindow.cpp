@@ -22,13 +22,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //second tab
     int testo_ae[] = {10,5,10};
-    std::vector<int> structure_ae (testo_ae, testo_ae+2);
+    std::vector<int> structure_ae (testo_ae, testo_ae+3);
     nn_ae = new NeuralNetwork(1.0, structure_ae);
     nn_ae->randomize_values(time(0), -1.0, 1.0);
 
     set_ae = new train_set;
     set_ae->iterations = 10000;
-    set_ae->learn_rate = 0.001;
+    set_ae->learn_rate = 0.00001;
 
 }
 
@@ -153,20 +153,97 @@ void MainWindow::on_btn_reset_ae_clicked()
 void MainWindow::on_btn_train_ae_clicked()
 {
     set_ae->iterations = ui->spin_iter_ae->value();
-    //TODO generate inputs
+    int num_sets = ui->spin_sets_ae->value();
+    set_ae->input.resize(num_sets);
+    set_ae->output.resize(num_sets);
+    if(ui->cb_random_ae->isChecked()){
+        for(int i=0; i<num_sets; i++){
+            set_ae->input[i].resize(10);
+            set_ae->output[i].resize(10);
+            for(int k=0; k<nn_ae->num_input; k++){//num_input=num_output!
+                set_ae->input[i][k] = RAND_DOUBLE(0.0,1.0);
+                set_ae->output[i][k] = set_ae->input[i][k];
+            }
+        }
+    }else{//first one random, after that use result of NN
+        set_ae->input[0].resize(10);
+        set_ae->output[0].resize(10);
+        for(int k=0; k<nn_ae->num_input; k++){
+            set_ae->input[0][k] = RAND_DOUBLE(0.0,1.0);
+            set_ae->output[0][k] = set_ae->input[0][k];
+        }
 
-    back_propagation(*nn_field, *set_field);
+        for(int i=1; i<num_sets; i++){
+            set_ae->input[i].resize(10);
+            set_ae->output[i].resize(10);
+            nn_ae->process(set_ae->input[i-1],set_ae->output[i]);
+            for(int k=0; k<nn_ae->num_input; k++){
+                set_ae->input[i][k] = set_ae->output[i][k];
+            }
+        }
+    }
+
+    back_propagation(*nn_ae, *set_ae);
 }
 
 void MainWindow::on_btn_encode_ae_clicked()
 {
-    //TODO
+    values_t input(10,0.0);
+    values_t output(10,0.0);
+    QDoubleSpinBox * box;
+    for(int i=0; i<10; i++){
+        box = (QDoubleSpinBox *) ui->grid_input_ae->itemAtPosition(i,0)->widget();
+        input[i] = box->value();
+    }
+
+    nn_ae->process(input,output);
+    for(int i=0; i<5; i++){
+        box = (QDoubleSpinBox *) ui->grid_middle_ae->itemAtPosition(i,0)->widget();
+        box->setValue(nn_ae->net[1][i].value);
+    }
+    for(int i=0; i<10; i++){
+        box = (QDoubleSpinBox *) ui->grid_output_ae->itemAtPosition(i,0)->widget();
+        box->setValue(output[i]);
+    }
+
 }
 
 void MainWindow::on_btn_decode_ae_clicked()
 {
-    //TODO
+    values_t output(10,0.0);
+    QDoubleSpinBox * box;
+    for(int i=0; i<5; i++){
+        box = (QDoubleSpinBox *) ui->grid_middle_ae->itemAtPosition(i,0)->widget();
+        nn_ae->net[1][i].value = box->value();
+    }
+
+    nn_ae->process_from(2,output);
+
+    for(int i=0; i<10; i++){
+        box = (QDoubleSpinBox *) ui->grid_output_ae->itemAtPosition(i,0)->widget();
+        box->setValue(output[i]);
+    }
 }
+
+
+void MainWindow::on_btn_randomize1_ae_clicked()
+{
+    QDoubleSpinBox * box;
+    for(int i=0; i<10; i++){
+        box = (QDoubleSpinBox *) ui->grid_input_ae->itemAtPosition(i,0)->widget();
+        box->setValue(RAND_DOUBLE(0.0,1.0));
+    }
+}
+
+void MainWindow::on_btn_randomize2_ae_clicked()
+{
+    QDoubleSpinBox * box;
+    for(int i=0; i<5; i++){
+        box = (QDoubleSpinBox *) ui->grid_middle_ae->itemAtPosition(i,0)->widget();
+        box->setValue(RAND_DOUBLE(0.0,1.0));
+    }
+}
+
 
 
 

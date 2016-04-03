@@ -71,6 +71,26 @@ values_t* NeuralNetwork::process(const values_t& input)
     return output;
 }
 
+void NeuralNetwork::process_from(int layer, values_t& output)
+{
+    if(output.size() != num_output){
+        output.resize(num_output);
+    }
+
+    //fire
+    for(int i=layer; i<net.size(); i++){
+        for(int k=0; k<net[i].size(); k++){
+            net[i][k].calc_value(net[i-1]);
+        }
+    }
+
+    //last fire to output
+    for(int k=0; k<num_output; k++){
+        output[k] = net[net.size()-1][k].value;
+    }
+
+}
+
 
 void NeuralNetwork::randomize_values(int seed, double min, double max)
 {

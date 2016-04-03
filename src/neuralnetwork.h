@@ -16,6 +16,7 @@ public:
 
     void process(const values_t& input, values_t& output);
     values_t* process(const values_t& input);
+    void process_from(int layer, values_t& output);
 
     void randomize_values(int seed, double min, double max);
     void set_values(double default_val);
