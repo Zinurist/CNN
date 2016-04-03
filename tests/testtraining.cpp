@@ -1,5 +1,7 @@
 #include "testtraining.h"
 
+#include <time.h>
+
 TestTraining::TestTraining(QObject *parent) : QObject(parent)
 {
 
