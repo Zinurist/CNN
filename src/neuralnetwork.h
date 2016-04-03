@@ -4,8 +4,8 @@
 #include "neuron.h"
 #include "types.h"
 
+#include <fstream>
 #include <iostream>
-#include <time.h>
 
 
 class NeuralNetwork
@@ -29,8 +29,8 @@ public:
     size_t num_output;
 
     //serialization
-    void NeuralNetwork::write_to(std::FILE* stream) const;
-    void NeuralNetwork::read_from(std::FILE* stream);
+    void write_to(std::FILE* stream) const;
+    void read_from(std::FILE* stream);
     //friend declaration functions as forward declaration!
     friend bool operator==(const NeuralNetwork& n1, const NeuralNetwork& n2);
     friend std::ostream& operator<<(std::ostream& os, const NeuralNetwork& n);

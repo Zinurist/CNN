@@ -2,7 +2,7 @@
 #define TYPES_H
 
 #include <vector>
-
+#include <stdlib.h>
 
 #define values_t std::vector<double>
 #define values_matrix_t std::vector<values_t>

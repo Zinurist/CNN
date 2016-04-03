@@ -1,5 +1,10 @@
 #include "neuralnetwork.h"
 
+#include <time.h>
+#include <inttypes.h>
+
+
+
 NeuralNetwork::NeuralNetwork(double default_val, const std::vector<int>& structure)
 {
     if(structure.size() < 2) throw "Invalid structure!";

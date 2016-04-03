@@ -3,9 +3,8 @@
 
 #include "types.h"
 
+#include <fstream>
 #include <iostream>
-#include <iomanip>
-#include <inttypes.h>
 
 
 double func(double x);
@@ -37,8 +36,8 @@ public:
     void print() const;
 
     //serialization
-    void Neuron::write_to(std::FILE* stream) const;
-    void Neuron::read_from(std::FILE* stream);
+    void write_to(std::FILE* stream) const;
+    void read_from(std::FILE* stream);
     //friend declaration functions as forward declaration!
     friend bool operator==(const Neuron& n1, const Neuron& n2);
     friend std::ostream& operator<<(std::ostream& os, const Neuron& n);
