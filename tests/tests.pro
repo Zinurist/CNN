@@ -9,6 +9,8 @@ QT += testlib
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+CONFIG += warn_off
+
 TARGET = CNNtest
 TEMPLATE = app
 

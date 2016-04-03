@@ -149,7 +149,7 @@ void NeuralNetwork::set_value_at(double value, int layer, int neuron)
 void NeuralNetwork::print() const
 {
     printf("Printing neural network:\n");
-    printf("Layer 0:\t%i input neurons\n", num_input);
+    printf("Layer 0:\t%lu input neurons\n", num_input);
     for(int i=1; i<net.size(); i++){
         printf("Layer %i:\n", i);
         for(int k=0; k<net[i].size(); k++){

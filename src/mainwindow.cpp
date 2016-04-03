@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <time.h>
+
 #define WIDTH 3
 #define HEIGHT 3
 

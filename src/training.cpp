@@ -51,19 +51,19 @@ void back_propagation(NeuralNetwork& nn, const train_set& set)
         delta_W.resize(num_lyrs);
         delta_b.resize(num_lyrs);
 
-        for(size_t lyr=0; lyr<num_lyrs; lyr++){
+        for(int lyr=0; lyr<num_lyrs; lyr++){
 
             num_neurons = nn.net[lyr+1].size();
             delta_W[lyr].resize(num_neurons);
             delta_b[lyr].resize(num_neurons);
 
-            for(size_t neu=0; neu<num_neurons; neu++){
+            for(int neu=0; neu<num_neurons; neu++){
 
                 num_connections = nn.net[lyr+1][neu].size();
                 delta_W[lyr][neu].resize(num_connections);
                 delta_b[lyr][neu] = 0.0;
 
-                for(size_t con=0; con<num_connections; con++){
+                for(int con=0; con<num_connections; con++){
                     delta_W[lyr][neu][con] = 0.0;
                 }
             }
@@ -78,14 +78,14 @@ void back_propagation(NeuralNetwork& nn, const train_set& set)
 
         //update parameters
         num_lyrs = nn.net.size()-1;
-        for(size_t lyr=0; lyr<num_lyrs; lyr++){
+        for(int lyr=0; lyr<num_lyrs; lyr++){
             num_neurons = nn.net[lyr+1].size();
 
-            for(size_t neu=0; neu<num_neurons; neu++){
+            for(int neu=0; neu<num_neurons; neu++){
                 num_connections = nn.net[lyr+1][neu].size();
                 nn.net[lyr+1][neu].bias -= set.learn_rate * delta_b[lyr][neu]/m;//see step above, m=input.size()
 
-                for(size_t con=0; con<num_connections; con++){
+                for(int con=0; con<num_connections; con++){
                     nn.net[lyr+1][neu][con] -= set.learn_rate * (delta_W[lyr][neu][con]/m  + LAMBDA*nn.net[lyr+1][neu][con]  );
                 }
             }
@@ -105,8 +105,8 @@ void back_propagate(NeuralNetwork& nn, const values_t& input, const values_t& ex
 
     values_t& prev = output;
     double tmp;
-    size_t lyr;
-    size_t num_lyrs, num_neurons, num_connections;
+    int lyr;
+    int num_lyrs, num_neurons, num_connections;
     values_matrix_t error;
 
     error.resize(nn.net.size()-1);//ignoring input layer!
@@ -128,7 +128,7 @@ void back_propagate(NeuralNetwork& nn, const values_t& input, const values_t& ex
         num_neurons = nn.net[lyr+1].size();
         error[lyr].resize(num_neurons);
 
-        for(size_t n=0; n<num_neurons; n++){
+        for(int n=0; n<num_neurons; n++){
             error[lyr][n] = func_deriv( func_inv( nn.net[lyr+1][n].value ) ); //->f'(z)
             tmp = 0;
             for(int j=0; j<prev.size(); j++){ //-> W^T*error[lyr+1] = W^T*prev
@@ -147,11 +147,11 @@ void back_propagate(NeuralNetwork& nn, const values_t& input, const values_t& ex
     for(lyr=0; lyr<num_lyrs; lyr++){
         num_neurons = error[lyr].size();
 
-        for(size_t neu=0; neu<num_neurons; neu++){
+        for(int neu=0; neu<num_neurons; neu++){
             num_connections = nn.net[lyr+1][neu].size();
 
             delta_b[lyr][neu] += error[lyr][neu];
-            for(size_t con=0; con<num_connections; con++){
+            for(int con=0; con<num_connections; con++){
                 //nn.net[lyr] -> lyr before current layer
                 //nn.net[lyr][con] -> specific neuron before current layer (num_neurons of [lyr-1] = num_connections of [lyr])
                 delta_W[lyr][neu][con] += error[lyr][neu]*nn.net[lyr][con].value;

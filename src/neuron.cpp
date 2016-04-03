@@ -65,7 +65,7 @@ void Neuron::calc_value(layer_t& layer)
 
     value = bias;
 
-    for(unsigned int i=0; i<layer.size(); i++){
+    for(int i=0; i<layer.size(); i++){
         value += layer[i].value * connections[i];
     }
 
@@ -75,7 +75,7 @@ void Neuron::calc_value(layer_t& layer)
 
 void Neuron::set_connections(double default_val)
 {
-    for(unsigned int i=0; i<connections.size(); i++){
+    for(int i=0; i<connections.size(); i++){
         connections[i] = default_val;
     }
     bias = default_val;
@@ -119,7 +119,7 @@ double Neuron::get_connection_at(int connection) const
 
 void Neuron::randomize_connections(double min, double max)
 {
-    for(unsigned int i=0; i<connections.size(); i++){
+    for(int i=0; i<connections.size(); i++){
         connections[i] = RAND_DOUBLE(min, max);
     }
     bias = RAND_DOUBLE(min, max);
@@ -129,7 +129,7 @@ void Neuron::randomize_connections(double min, double max)
 
 void Neuron::print() const
 {
-    for(unsigned int i=0; i<connections.size(); i++){
+    for(int i=0; i<connections.size(); i++){
         printf("\t%.5f", connections[i]);
     }
     printf(", bias: %.5f, value at %.5f\n", bias, value);
@@ -143,7 +143,7 @@ void Neuron::print() const
 void Neuron::write_to(std::FILE* stream) const
 {
     fprintf(stream, "size: %lu,", connections.size());
-    for(unsigned int i=0; i<connections.size(); i++){
+    for(int i=0; i<connections.size(); i++){
         fprintf(stream, " %.17lf", connections[i]);
     }
     fprintf(stream, ", bias: %.17lf", bias);
@@ -156,7 +156,7 @@ void Neuron::read_from(std::FILE* stream)
     size_t size = 0;
     fscanf(stream, "size: %lu,", &size);
     connections.resize(size);
-    for(unsigned int i=0; i<size; i++){
+    for(int i=0; i<size; i++){
         fscanf(stream, " %lf", &connections[i]);
     }
     fscanf(stream, ", bias: %lf", &bias);
@@ -168,7 +168,7 @@ bool operator==(const Neuron& n1, const Neuron& n2)
     if(n1.connections.size() != n2.connections.size())
         return false;
 
-    for(unsigned int i=0; i<n1.connections.size(); i++){
+    for(int i=0; i<n1.connections.size(); i++){
         if(abs(n1.connections[i] - n2.connections[i]) > EPSILON)
             return false;
     }
@@ -187,7 +187,7 @@ std::istream& operator>>(std::istream& is, Neuron& n)
     uint64_t size;
     is >> size;
     n.connections.resize(size);
-    for(unsigned int i=0; i<size; i++){
+    for(int i=0; i<size; i++){
         is >> n.connections[i];
     }
     is >> n.bias;
@@ -202,7 +202,7 @@ std::ostream& operator<<(std::ostream& os, const Neuron& n)
     //os << n.value;
     os << n.connections.size();
     os << " " << std::setprecision(17);
-    for(unsigned int i=0; i<n.connections.size(); i++){
+    for(int i=0; i<n.connections.size(); i++){
         os << n.connections[i] << " ";
     }
     os << n.bias;
