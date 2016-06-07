@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS= -c -Wall
 LDLIBS= 
-SOURCES=main.cpp types.cpp neuron.cpp neuralnetwork.cpp training.cpp convolutionalneuralnetwork.cpp
+SOURCES=main.cpp types.cpp neuron.cpp neuralnetwork.cpp training.cpp convolutionalneuralnetwork.cpp mnist.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=net
 
