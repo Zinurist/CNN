@@ -63,8 +63,28 @@ void read_set(const char* file, set& s){
     for(uint32_t i=0; i<num; i++){
         image img =(image) new char[rows*columns];
         s.push_back(img);
-        fread(s[i], 28*28, 1, f);
+        fread(s[i], IMAGE_SIZE, 1, f);
     }
 
     fclose(f);
+}
+
+
+void to_train_set(train_set& t, const set& s, const labels& l){
+    if(s.size() != l.size()) throw "Invalid set sizes!";
+
+    t.input.resize(s.size());
+    t.output.resize(s.size());
+    for(int i=0; i<s.size(); i++){
+        t.input[i].resize(IMAGE_SIZE);
+        t.output[i].resize(LABEL_SIZE);
+
+        for(int k=0; k<IMAGE_SIZE; k++){
+            t.input[i][k] = (double) ((char*) s[i]) [k];
+        }
+        for(int k=0; k<LABEL_SIZE; k++){
+            t.output[i][k] = 0.0;
+        }
+        t.output[i][ l[i] ] = 1.0;
+    }
 }
