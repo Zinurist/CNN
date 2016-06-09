@@ -3,7 +3,20 @@
 
 #include <cstdio>
 #include <inttypes.h>
-#include <netinet/in.h>
+#ifdef _WIN32
+    int ntohl(int num){
+        char * p = (char*) &num;
+        char c = p[0];
+        p[0] = p[3];
+        p[3] = c;
+        c = p[1];
+        p[1] = p[2];
+        p[2] = c;
+        return num;
+    }
+#else
+    #include <netinet/in.h>
+#endif
 
 void load(mnist& set){
     read_labels("../../train-labels.idx1-ubyte", set.training_labels);
@@ -17,6 +30,7 @@ mnist* load(){
     load(*set);
     return set;
 }
+
 
 void read_labels(const char* file, labels& l){
     FILE* f = fopen(file, "r");

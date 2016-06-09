@@ -36,31 +36,40 @@ double error(NeuralNetwork& nn, const train_set& set)
 }
 
 
-void back_propagation(NeuralNetwork& nn, const train_set& set)
+void back_propagation(NeuralNetwork& nn, train_set& set)
 {
     //algorithm from http://ufldl.stanford.edu/tutorial/supervised/MultiLayerNeuralNetworks/
 
-    for(int it=0; it<set.iterations; it++){
-        size_t num_lyrs, num_neurons, num_connections;
+    set.progress = 0;
+    size_t num_lyrs, num_neurons, num_connections;
+    int m;
+
+    std::vector<values_matrix_t> delta_W;
+    values_matrix_t delta_b;
+
+    num_lyrs = nn.net.size()-1;
+    delta_W.resize(num_lyrs);
+    delta_b.resize(num_lyrs);
+    //size delta_W/b
+    for(int lyr=0; lyr<num_lyrs; lyr++){
+        num_neurons = nn.net[lyr+1].size();
+        delta_W[lyr].resize(num_neurons);
+        delta_b[lyr].resize(num_neurons);
+        for(int neu=0; neu<num_neurons; neu++){
+            num_connections = nn.net[lyr+1][neu].size();
+            delta_W[lyr][neu].resize(num_connections);
+        }
+    }
+
+    for(; set.progress < set.iterations; set.progress++){
+        //normal algorithm:
 
         //prep delta W, delta b
-        std::vector<values_matrix_t> delta_W;
-        values_matrix_t delta_b;
-
-        num_lyrs = nn.net.size()-1;
-        delta_W.resize(num_lyrs);
-        delta_b.resize(num_lyrs);
-
         for(int lyr=0; lyr<num_lyrs; lyr++){
-
             num_neurons = nn.net[lyr+1].size();
-            delta_W[lyr].resize(num_neurons);
-            delta_b[lyr].resize(num_neurons);
 
             for(int neu=0; neu<num_neurons; neu++){
-
                 num_connections = nn.net[lyr+1][neu].size();
-                delta_W[lyr][neu].resize(num_connections);
                 delta_b[lyr][neu] = 0.0;
 
                 for(int con=0; con<num_connections; con++){
@@ -71,7 +80,6 @@ void back_propagation(NeuralNetwork& nn, const train_set& set)
 
 
         //training calculations
-        int m;
         for(m=0; m<set.input.size(); m++){
             back_propagate(nn, set.input[m], set.output[m], delta_W, delta_b);
         }
@@ -90,8 +98,73 @@ void back_propagation(NeuralNetwork& nn, const train_set& set)
                 }
             }
         }
+
     }
 }
+
+
+void back_propagation_instant(NeuralNetwork& nn, train_set& set)
+{
+    //algorithm from http://ufldl.stanford.edu/tutorial/supervised/MultiLayerNeuralNetworks/
+
+    set.progress = 0;
+    size_t num_lyrs, num_neurons, num_connections;
+
+    std::vector<values_matrix_t> delta_W;
+    values_matrix_t delta_b;
+
+    num_lyrs = nn.net.size()-1;
+    delta_W.resize(num_lyrs);
+    delta_b.resize(num_lyrs);
+    //size delta_W/b
+    for(int lyr=0; lyr<num_lyrs; lyr++){
+        num_neurons = nn.net[lyr+1].size();
+        delta_W[lyr].resize(num_neurons);
+        delta_b[lyr].resize(num_neurons);
+        for(int neu=0; neu<num_neurons; neu++){
+            num_connections = nn.net[lyr+1][neu].size();
+            delta_W[lyr][neu].resize(num_connections);
+        }
+    }
+
+    for(; set.progress < set.iterations; set.progress++){
+        //alternative algorithm:
+
+        for(int m=0; m<set.input.size(); m++){
+            for(int lyr=0; lyr<num_lyrs; lyr++){
+                num_neurons = nn.net[lyr+1].size();
+
+                for(int neu=0; neu<num_neurons; neu++){
+                    num_connections = nn.net[lyr+1][neu].size();
+                    delta_b[lyr][neu] = 0.0;
+
+                    for(int con=0; con<num_connections; con++){
+                        delta_W[lyr][neu][con] = 0.0;
+                    }
+                }
+            }
+
+            back_propagate(nn, set.input[m], set.output[m], delta_W, delta_b);
+
+            num_lyrs = nn.net.size()-1;
+            for(int lyr=0; lyr<num_lyrs; lyr++){
+                num_neurons = nn.net[lyr+1].size();
+
+                for(int neu=0; neu<num_neurons; neu++){
+                    num_connections = nn.net[lyr+1][neu].size();
+                    nn.net[lyr+1][neu].bias -= set.learn_rate * delta_b[lyr][neu];
+
+                    for(int con=0; con<num_connections; con++){
+                        nn.net[lyr+1][neu][con] -= set.learn_rate * (delta_W[lyr][neu][con]  + LAMBDA*nn.net[lyr+1][neu][con]  );
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+
 
 void back_propagate(NeuralNetwork& nn, const values_t& input, const values_t& expected_output, std::vector<values_matrix_t>& delta_W, values_matrix_t& delta_b)
 {

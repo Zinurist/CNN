@@ -8,7 +8,7 @@ typedef struct train_set{
     values_matrix_t input;
     values_matrix_t output;
     double learn_rate;
-    int iterations;
+    int iterations, progress;
 } train_set;
 
 
@@ -17,7 +17,8 @@ typedef struct train_set{
 double error_single(NeuralNetwork& nn, const values_t& input, const values_t& expected_output);
 double error(NeuralNetwork& nn, const train_set& set);
 
-void back_propagation(NeuralNetwork& nn, const train_set& set);
+void back_propagation(NeuralNetwork& nn, train_set& set);
+void back_propagation_instant(NeuralNetwork& nn, train_set& set);
 void back_propagate(NeuralNetwork& nn, const values_t& input, const values_t& expected_output, std::vector<values_matrix_t>& delta_W, values_matrix_t& delta_b);
 
 // bias should be 0.0
