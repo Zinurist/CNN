@@ -19,10 +19,10 @@
 #endif
 
 void load(mnist& set){
-    read_labels("../../train-labels.idx1-ubyte", set.training_labels);
-    read_set("../../train-images.idx3-ubyte", set.training_set);
-    read_labels("../../t10k-labels.idx1-ubyte", set.test_labels);
-    read_set("../../t10k-images.idx3-ubyte", set.test_set);
+    read_labels("train-labels.idx1-ubyte", set.training_labels);
+    read_set("train-images.idx3-ubyte", set.training_set);
+    read_labels("t10k-labels.idx1-ubyte", set.test_labels);
+    read_set("t10k-images.idx3-ubyte", set.test_set);
 }
 
 mnist* load(){
