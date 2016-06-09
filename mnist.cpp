@@ -20,10 +20,10 @@
 #endif
 
 void load(mnist& set){
-    read_labels("train-labels.idx1-ubyte", set.training_labels);
-    read_set("train-images.idx3-ubyte", set.training_set);
-    read_labels("t10k-labels.idx1-ubyte", set.test_labels);
-    read_set("t10k-images.idx3-ubyte", set.test_set);
+    read_labels("../../train-labels.idx1-ubyte", set.training_labels);
+    read_set("../../train-images.idx3-ubyte", set.training_set);
+    read_labels("../../t10k-labels.idx1-ubyte", set.test_labels);
+    read_set("../../t10k-images.idx3-ubyte", set.test_set);
 }
 
 mnist* load(){
@@ -86,11 +86,16 @@ void read_set(const char* file, set& s){
 
 
 void to_train_set(train_set& t, const set& s, const labels& l){
-    if(s.size() != l.size()) throw "Invalid set sizes!";
+    to_train_set(t, s, l, s.size());
+}
 
-    t.input.resize(s.size());
-    t.output.resize(s.size());
-    for(int i=0; i<s.size(); i++){
+
+void to_train_set(train_set& t, const set& s, const labels& l, size_t batch_size){
+    if(s.size() != l.size() || s.size() < batch_size) throw "Invalid set sizes!";
+
+    t.input.resize(batch_size);
+    t.output.resize(batch_size);
+    for(int i=0; i<batch_size; i++){
         t.input[i].resize(IMAGE_SIZE);
         t.output[i].resize(LABEL_SIZE);
 
@@ -103,3 +108,5 @@ void to_train_set(train_set& t, const set& s, const labels& l){
         t.output[i][ l[i] ] = 1.0;
     }
 }
+
+

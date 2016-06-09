@@ -25,6 +25,7 @@ mnist* load();
 void read_labels(const char* file, labels& l);
 void read_set(const char* file, set& i);
 void to_train_set(train_set& t, const set& s, const labels& l);
+void to_train_set(train_set& t, const set& s, const labels& l, size_t batch_size);
 
 #endif // MNIST
 
