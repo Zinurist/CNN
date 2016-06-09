@@ -7,31 +7,31 @@
 #include <iostream>
 
 
-double func(double x);
-double func_deriv(double x);//derivative
-double func_inv(double x);//inverse
+TYPE func(TYPE x);
+TYPE func_deriv(TYPE x);//derivative
+TYPE func_inv(TYPE x);//inverse
 
 class Neuron
 {
     friend class NeuralNetwork;
 public:
     Neuron();
-    Neuron(double default_val, int size);
-    Neuron(double default_val, double bias, int size);
+    Neuron(TYPE default_val, int size);
+    Neuron(TYPE default_val, TYPE bias, int size);
 
     void calc_value(layer_t& layer);
 
-    void set_connections(double default_val);
+    void set_connections(TYPE default_val);
     size_t size();
-    double& operator[](size_t index);
+    TYPE& operator[](size_t index);
     /*
-    void set_value(double val);
-    double get_value() const;
+    void set_value(TYPE val);
+    TYPE get_value() const;
     size_t get_size() const;
-    void set_connection_at(int connection, double value);
-    double get_connection_at(int connection) const;
+    void set_connection_at(int connection, TYPE value);
+    TYPE get_connection_at(int connection) const;
     */
-    void randomize_connections(double min, double max);
+    void randomize_connections(TYPE min, TYPE max);
 
     void print() const;
 
@@ -44,8 +44,8 @@ public:
     friend std::istream& operator>>(std::istream& is, Neuron& n);
 
 //private:
-    double value;
-    double bias;
+    TYPE value;
+    TYPE bias;
     values_t connections;
 
 };

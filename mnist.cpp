@@ -1,5 +1,6 @@
 
 #include "mnist.h"
+#include "types.h"
 
 #include <cstdio>
 #include <inttypes.h>
@@ -19,10 +20,10 @@
 #endif
 
 void load(mnist& set){
-    read_labels("train-labels.idx1-ubyte", set.training_labels);
-    read_set("train-images.idx3-ubyte", set.training_set);
-    read_labels("t10k-labels.idx1-ubyte", set.test_labels);
-    read_set("t10k-images.idx3-ubyte", set.test_set);
+    read_labels("../../train-labels.idx1-ubyte", set.training_labels);
+    read_set("../../train-images.idx3-ubyte", set.training_set);
+    read_labels("../../t10k-labels.idx1-ubyte", set.test_labels);
+    read_set("../../t10k-images.idx3-ubyte", set.test_set);
 }
 
 mnist* load(){
@@ -94,7 +95,7 @@ void to_train_set(train_set& t, const set& s, const labels& l){
         t.output[i].resize(LABEL_SIZE);
 
         for(int k=0; k<IMAGE_SIZE; k++){
-            t.input[i][k] = (double) ((char*) s[i]) [k];
+            t.input[i][k] = (TYPE) ((char*) s[i]) [k];
         }
         for(int k=0; k<LABEL_SIZE; k++){
             t.output[i][k] = 0.0;

@@ -11,17 +11,17 @@
 class NeuralNetwork
 {
 public:
-    NeuralNetwork(double default_val, const std::vector<int>& structure);
+    NeuralNetwork(TYPE default_val, const std::vector<int>& structure);
     NeuralNetwork(const std::vector<int>& structure);
 
     void process(const values_t& input, values_t& output);
     values_t* process(const values_t& input);
     void process_from(int layer, values_t& output);
 
-    void randomize_values(int seed, double min, double max);
-    void set_values(double default_val);
-    void set_bias(double default_val);
-    //void set_value_at(double value, int layer, int neuron);
+    void randomize_values(int seed, TYPE min, TYPE max);
+    void set_values(TYPE default_val);
+    void set_bias(TYPE default_val);
+    //void set_value_at(TYPE value, int layer, int neuron);
 
     void print() const;
 

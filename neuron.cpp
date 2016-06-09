@@ -5,7 +5,7 @@
 #include <iomanip>
 
 
-double func(double x)
+TYPE func(TYPE x)
 {
     //return x;
 
@@ -13,7 +13,7 @@ double func(double x)
 
     return 1/(1+exp(-x));
 }
-double func_deriv(double x)
+TYPE func_deriv(TYPE x)
 {
     //return 1;
 
@@ -22,7 +22,7 @@ double func_deriv(double x)
 
     return x*(1-x);
 }
-double func_inv(double x)
+TYPE func_inv(TYPE x)
 {
     //return x;
 
@@ -38,14 +38,14 @@ Neuron::Neuron()
     connections.resize(0);
 }
 
-Neuron::Neuron(double default_val, int size)
+Neuron::Neuron(TYPE default_val, int size)
 {
     value = 0.0;
     connections.resize(size);
     set_connections(default_val);
 }
 
-Neuron::Neuron(double default_val, double biasv, int size)
+Neuron::Neuron(TYPE default_val, TYPE biasv, int size)
 {
     value = 0.0;
     connections.resize(size);
@@ -73,7 +73,7 @@ void Neuron::calc_value(layer_t& layer)
 }
 
 
-void Neuron::set_connections(double default_val)
+void Neuron::set_connections(TYPE default_val)
 {
     for(int i=0; i<connections.size(); i++){
         connections[i] = default_val;
@@ -87,18 +87,18 @@ size_t Neuron::size()
     return connections.size();
 }
 
-double& Neuron::operator[](size_t index)
+TYPE& Neuron::operator[](size_t index)
 {
     return connections[index];
 }
 
 
 /*
-void Neuron::set_value(double val)
+void Neuron::set_value(TYPE val)
 {
     value=val;
 }
-double Neuron::get_value() const
+TYPE Neuron::get_value() const
 {
     return value;
 }
@@ -106,23 +106,23 @@ size_t Neuron::get_size() const
 {
     return connections.size();
 }
-void Neuron::set_connection_at(int connection, double value)
+void Neuron::set_connection_at(int connection, TYPE value)
 {
     connections[connection] = value;
 }
-double Neuron::get_connection_at(int connection) const
+TYPE Neuron::get_connection_at(int connection) const
 {
     return connections[connection];
 }
 */
 
 
-void Neuron::randomize_connections(double min, double max)
+void Neuron::randomize_connections(TYPE min, TYPE max)
 {
     for(int i=0; i<connections.size(); i++){
-        connections[i] = RAND_DOUBLE(min, max);
+        connections[i] = RANDY(min, max);
     }
-    bias = RAND_DOUBLE(min, max);
+    bias = RANDY(min, max);
 }
 
 

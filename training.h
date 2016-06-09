@@ -7,15 +7,15 @@
 typedef struct train_set{
     values_matrix_t input;
     values_matrix_t output;
-    double learn_rate;
+    TYPE learn_rate;
     int iterations, progress;
 } train_set;
 
 
 #define LAMBDA 1.0
 
-double error_single(NeuralNetwork& nn, const values_t& input, const values_t& expected_output);
-double error(NeuralNetwork& nn, const train_set& set);
+TYPE error_single(NeuralNetwork& nn, const values_t& input, const values_t& expected_output);
+TYPE error(NeuralNetwork& nn, const train_set& set);
 
 void back_propagation(NeuralNetwork& nn, train_set& set);
 void back_propagation_instant(NeuralNetwork& nn, train_set& set);

@@ -1,18 +1,18 @@
 #include "training.h"
 
 
-double error_single(NeuralNetwork& nn, const values_t& input, const values_t& expected_output)
+TYPE error_single(NeuralNetwork& nn, const values_t& input, const values_t& expected_output)
 {
     values_t output;
     nn.process(input, output);
-    double res = abs(output - expected_output);
+    TYPE res = abs(output - expected_output);
     return res*res/2;
 }
 
-double error(NeuralNetwork& nn, const train_set& set)
+TYPE error(NeuralNetwork& nn, const train_set& set)
 {
-    double avg_error = 0.0;
-    double weight_decay = 0.0;
+    TYPE avg_error = 0.0;
+    TYPE weight_decay = 0.0;
 
     //avg error
     for(int i=0; i<set.input.size(); i++){
@@ -21,7 +21,7 @@ double error(NeuralNetwork& nn, const train_set& set)
     avg_error = avg_error/set.input.size();
 
     //weight decay
-    double tmp;
+    TYPE tmp;
     for(int layer=0; layer<nn.net.size(); layer++){
         for(int neuron=0; neuron<nn.net[layer].size(); neuron++){
             for(int con=0; con<nn.net[layer][neuron].size(); con++){
@@ -177,7 +177,7 @@ void back_propagate(NeuralNetwork& nn, const values_t& input, const values_t& ex
     nn.process(input, output);
 
     values_t& prev = output;
-    double tmp;
+    TYPE tmp;
     int lyr;
     int num_lyrs, num_neurons, num_connections;
     values_matrix_t error;

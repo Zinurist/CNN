@@ -5,7 +5,7 @@
 
 
 
-NeuralNetwork::NeuralNetwork(double default_val, const std::vector<int>& structure)
+NeuralNetwork::NeuralNetwork(TYPE default_val, const std::vector<int>& structure)
 {
     if(structure.size() < 2) throw "Invalid structure!";
 
@@ -97,7 +97,7 @@ void NeuralNetwork::process_from(int layer, values_t& output)
 }
 
 
-void NeuralNetwork::randomize_values(int seed, double min, double max)
+void NeuralNetwork::randomize_values(int seed, TYPE min, TYPE max)
 {
     srand(seed);
     for(int i=0; i<net.size(); i++){
@@ -109,7 +109,7 @@ void NeuralNetwork::randomize_values(int seed, double min, double max)
 
 
 
-void NeuralNetwork::set_values(double default_val)
+void NeuralNetwork::set_values(TYPE default_val)
 {
     for(int i=0; i<net.size(); i++){
         for(int k=0; k<net[i].size(); k++){
@@ -118,7 +118,7 @@ void NeuralNetwork::set_values(double default_val)
     }
 }
 
-void NeuralNetwork::set_bias(double default_val)
+void NeuralNetwork::set_bias(TYPE default_val)
 {
     for(int i=0; i<net.size(); i++){
         for(int k=0; k<net[i].size(); k++){
@@ -129,7 +129,7 @@ void NeuralNetwork::set_bias(double default_val)
 
 
 /*
-void NeuralNetwork::set_value_at(double value, int layer, int neuron)
+void NeuralNetwork::set_value_at(TYPE value, int layer, int neuron)
 {
     if(layer >= net.size()){
         throw "Invalid layer!";
