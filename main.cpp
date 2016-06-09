@@ -2,11 +2,9 @@
 #include "training.h"
 #include "mnist.h"
 
-#include <cstdio>
 
 
 int main(int argc, char *argv[]){
-	printf("Starting!");
     mnist* data = load();
 
     int testo_mnist[] = {28*28,28*28/4,10};
@@ -20,8 +18,10 @@ int main(int argc, char *argv[]){
 
     to_train_set(set, data->training_set, data->training_labels);
 
+    std::cout << "Starting!" << std::endl;
+    
     back_propagation(nn, set);
 
-	printf("Done!");
+    std::cout << "Done!" << std::endl;
 	return 0;
 }
