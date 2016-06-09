@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS= -c -Wall
+CFLAGS= -c -Wall -Wno-sign-compare -std=c++11
 LDLIBS= 
 SOURCES=main.cpp types.cpp neuron.cpp neuralnetwork.cpp training.cpp convolutionalneuralnetwork.cpp mnist.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
