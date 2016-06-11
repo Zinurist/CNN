@@ -12,7 +12,7 @@ typedef struct train_set{
 } train_set;
 
 
-#define LAMBDA 1.0
+#define LAMBDA 0.0001
 
 TYPE error_single(NeuralNetwork& nn, const values_t& input, const values_t& expected_output);
 TYPE error(NeuralNetwork& nn, const train_set& set);
@@ -23,5 +23,6 @@ void back_propagate(NeuralNetwork& nn, const values_t& input, const values_t& ex
 
 // bias should be 0.0
 void linear_regression(NeuralNetwork& nn, train_set& t);/* simple training algorithm for 2 layer NNs */
+void logistic_regression(NeuralNetwork& nn, train_set& t);
 
 #endif // TRAINING_H

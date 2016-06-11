@@ -21,12 +21,14 @@ TYPE error(NeuralNetwork& nn, const train_set& set)
     avg_error = avg_error/set.input.size();
 
     //weight decay
-    TYPE tmp;
-    for(int layer=0; layer<nn.net.size(); layer++){
-        for(int neuron=0; neuron<nn.net[layer].size(); neuron++){
-            for(int con=0; con<nn.net[layer][neuron].size(); con++){
-                tmp = nn.net[layer][neuron][con];
-                weight_decay += tmp*tmp ;
+    if(LAMBDA != 0){
+        TYPE tmp;
+        for(int layer=0; layer<nn.net.size(); layer++){
+            for(int neuron=0; neuron<nn.net[layer].size(); neuron++){
+                for(int con=0; con<nn.net[layer][neuron].size(); con++){
+                    tmp = nn.net[layer][neuron][con];
+                    weight_decay += tmp*tmp ;
+                }
             }
         }
     }
@@ -258,3 +260,30 @@ void linear_regression(NeuralNetwork& nn, train_set& t)
         }
     }
 }
+
+
+void logistic_regression(NeuralNetwork& nn, train_set& t){
+    if(nn.net.size() != 2) return;
+
+    if(t.input.size() != t.output.size())
+        throw "Training set misaligned!";
+
+    values_t output_tmp(nn.num_output,0);
+
+    for(int k=0; k<t.iterations; k++){
+        for(int set=0; set<t.input.size(); set++){
+            nn.process(t.input[set], output_tmp);
+
+            //NP Buch S.266
+            for(int i=0; i<nn.num_output; i++){
+                nn.net[1][i].connections += (t.learn_rate/abs(t.input[set])) * (t.output[set][i] - output_tmp[i])*t.input[set];
+            }
+        }
+    }
+}
+
+
+
+
+
+

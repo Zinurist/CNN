@@ -108,6 +108,27 @@ void to_train_set(train_set& t, const set& s, const labels& l, size_t batch_size
         }
         t.output[i][ l[i] ] = 1.0;
     }
+    /*only 1 and 0:
+    int count = 0;
+    t.input.resize(batch_size);
+    t.output.resize(batch_size);
+    for(int i=0; i<batch_size; i++){
+        t.input[i].resize(IMAGE_SIZE);
+        t.output[i].resize(LABEL_SIZE);
+        if(l[count] == 0 || l[count] == 1){
+            for(int k=0; k<IMAGE_SIZE; k++){
+                t.input[i][k] = (TYPE) ((unsigned char*) s[i]) [k];
+                t.input[i][k] /= 255.0;
+            }
+            for(int k=0; k<LABEL_SIZE; k++){
+                t.output[i][k] = 0.0;
+            }
+            t.output[i][ l[count] ] = 1.0;
+        }
+        count++;
+    }
+    */
+
 }
 
 
