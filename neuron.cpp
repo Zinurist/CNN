@@ -55,7 +55,27 @@ Neuron::Neuron(TYPE default_val, TYPE biasv, int size)
 
 
 
-void Neuron::calc_value(layer_t& layer)
+void Neuron::activate()
+{
+    value = func(value);
+}
+
+void Neuron::load(const values_t& input)
+{
+#ifndef OPTIMIZED
+    if(input.size() != connections.size()){
+        throw "Invalid fire sizes!";
+    }
+#endif
+
+    value = bias;
+
+    for(int i=0; i<input.size(); i++){
+        value += input[i] * connections[i];
+    }
+}
+
+void Neuron::load(const layer_t& layer)
 {
 #ifndef OPTIMIZED
     if(layer.size() != connections.size()){
@@ -68,8 +88,19 @@ void Neuron::calc_value(layer_t& layer)
     for(int i=0; i<layer.size(); i++){
         value += layer[i].value * connections[i];
     }
+}
 
-    value = func(value);
+void Neuron::calc_value(const values_t& input)
+{
+    load(input);
+    activate();
+}
+
+
+void Neuron::calc_value(const layer_t& layer)
+{
+    load(layer);
+    activate();
 }
 
 
@@ -184,7 +215,7 @@ std::istream& operator>>(std::istream& is, Neuron& n)
     //value doesnt need to be saved
     //is >> n.value;
     n.value = 0.0;
-    uint64_t size;
+    size_t size;
     is >> size;
     n.connections.resize(size);
     for(int i=0; i<size; i++){

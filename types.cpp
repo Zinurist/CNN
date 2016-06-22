@@ -11,6 +11,12 @@ void print(values_t& v)
     printf("\n");
 }
 
+void print(values_matrix_t& v)
+{
+    for(unsigned int i=0; i<v.size(); i++)
+        print(v[i]);
+}
+
 
 TYPE abs(const values_t& a)
 {

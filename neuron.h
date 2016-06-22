@@ -19,7 +19,11 @@ public:
     Neuron(TYPE default_val, int size);
     Neuron(TYPE default_val, TYPE bias, int size);
 
-    void calc_value(layer_t& layer);
+    void calc_value(const values_t& layer);
+    void load(const values_t& layer);
+    void calc_value(const layer_t& layer);
+    void load(const layer_t& layer);
+    void activate();
 
     void set_connections(TYPE default_val);
     size_t size();
@@ -43,7 +47,7 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Neuron& n);
     friend std::istream& operator>>(std::istream& is, Neuron& n);
 
-//private:
+
     TYPE value;
     TYPE bias;
     values_t connections;

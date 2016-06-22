@@ -21,7 +21,6 @@ public:
     void randomize_values(int seed, TYPE min, TYPE max);
     void set_values(TYPE default_val);
     void set_bias(TYPE default_val);
-    //void set_value_at(TYPE value, int layer, int neuron);
 
     void print() const;
 
@@ -38,6 +37,17 @@ public:
 
 //private:
     network_t net;
+
+};
+
+
+class NeuralNetworkSoftmax : public NeuralNetwork
+{
+public:
+    NeuralNetworkSoftmax(TYPE default_val, const std::vector<int>& structure) : NeuralNetwork(default_val, structure) {}
+    NeuralNetworkSoftmax(const std::vector<int>& structure) : NeuralNetwork(structure) {}
+
+    void process(const values_t& input, values_t& output);
 
 };
 

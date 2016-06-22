@@ -15,6 +15,7 @@
 #define EPSILON  1e-15
 
 void print(values_t& v);
+void print(values_matrix_t& v);
 
 TYPE abs(const values_t& a);
 TYPE sum(const values_t& a);

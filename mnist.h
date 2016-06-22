@@ -10,7 +10,7 @@
 #define LABEL_SIZE 10
 
 typedef std::vector<unsigned char> labels;
-typedef unsigned char** image;
+typedef unsigned char* image;
 typedef std::vector<image> set;
 
 typedef struct mnist{

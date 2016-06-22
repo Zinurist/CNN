@@ -2,7 +2,7 @@
 #include "training.h"
 #include "mnist.h"
 
-
+#include <ctime>
 
 int main(int argc, char *argv[]){
     mnist* data = load();
@@ -13,15 +13,22 @@ int main(int argc, char *argv[]){
     nn.randomize_values(time(0), -1.0, 1.0);
 
     train_set set;
-    set.iterations = 1;
-    set.learn_rate = 0.001;
+    set.iterations = 100;
+    set.learn_rate = 0.2;
+    set.weight_decay = 0.0001;
 
     to_train_set(set, data->training_set, data->training_labels);
 
     std::cout << "Starting!" << std::endl;
     
-    back_propagation(nn, set);
+    clock_t begin = clock();
+    double err = error(nn, set, 300*100);
+    back_propagation(nn, set, 300);
+    err = err-error(nn, set, 300*100);
+    clock_t end = clock();
 
-    std::cout << "Done!" << std::endl;
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+
+    std::cout << "Done! " << err << ", " << elapsed_secs << "s" << std::endl;
 	return 0;
 }
