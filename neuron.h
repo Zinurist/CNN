@@ -19,10 +19,10 @@ public:
     Neuron(TYPE default_val, int size);
     Neuron(TYPE default_val, TYPE bias, int size);
 
-    void calc_value(const values_t& layer);
-    void load(const values_t& layer);
-    void calc_value(const layer_t& layer);
-    void load(const layer_t& layer);
+    void feed_forward(const values_t& layer);
+    void feed(const values_t& layer);
+    void feed_forward(const layer_t& layer);
+    void feed(const layer_t& layer);
     void activate();
 
     void set_connections(TYPE default_val);

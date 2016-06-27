@@ -60,7 +60,7 @@ void Neuron::activate()
     value = func(value);
 }
 
-void Neuron::load(const values_t& input)
+void Neuron::feed(const values_t& input)
 {
 #ifndef OPTIMIZED
     if(input.size() != connections.size()){
@@ -75,7 +75,7 @@ void Neuron::load(const values_t& input)
     }
 }
 
-void Neuron::load(const layer_t& layer)
+void Neuron::feed(const layer_t& layer)
 {
 #ifndef OPTIMIZED
     if(layer.size() != connections.size()){
@@ -90,16 +90,16 @@ void Neuron::load(const layer_t& layer)
     }
 }
 
-void Neuron::calc_value(const values_t& input)
+void Neuron::feed_forward(const values_t& input)
 {
-    load(input);
+    feed(input);
     activate();
 }
 
 
-void Neuron::calc_value(const layer_t& layer)
+void Neuron::feed_forward(const layer_t& layer)
 {
-    load(layer);
+    feed(layer);
     activate();
 }
 

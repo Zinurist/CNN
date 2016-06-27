@@ -47,13 +47,13 @@ void NeuralNetwork::process(const values_t& input, values_t& output)
 
     //feed input
     for(int k=0; k<net[0].size(); k++){
-        net[0][k].calc_value(input);
+        net[0][k].feed_forward(input);
     }
 
     //fire (note the -1!)
     for(int i=1; i<net.size(); i++){
         for(int k=0; k<net[i].size(); k++){
-            net[i][k].calc_value(net[i-1]);
+            net[i][k].feed_forward(net[i-1]);
         }
     }
 
@@ -85,7 +85,7 @@ void NeuralNetwork::process_from(int layer, values_t& output)
     //fire
     for(int i=layer; i<net.size(); i++){
         for(int k=0; k<net[i].size(); k++){
-            net[i][k].calc_value(net[i-1]);
+            net[i][k].feed_forward(net[i-1]);
         }
     }
 
@@ -264,7 +264,7 @@ void NeuralNetworkSoftmax::process(const values_t& input, values_t& output)
     //feed input
     if(net.size() > 1){
         for(int k=0; k<net[0].size(); k++){
-            net[0][k].calc_value(input);
+            net[0][k].feed_forward(input);
         }
     }
 
@@ -272,13 +272,13 @@ void NeuralNetworkSoftmax::process(const values_t& input, values_t& output)
     int i;
     for(i=1; i<net.size()-1; i++){
         for(int k=0; k<net[i].size(); k++){
-            net[i][k].calc_value(net[i-1]);
+            net[i][k].feed_forward(net[i-1]);
         }
     }
 
     double sum = 0;
     for(int k=0; k<net[i].size(); k++){
-        net[i][k].load(net[net.size()-1]);
+        net[i][k].feed(net[net.size()-1]);
         net[i][k].value = exp(net[i][k].value);
         sum += net[i][k].value;
     }

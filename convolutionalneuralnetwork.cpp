@@ -106,6 +106,15 @@ TYPE ConvolutionalNeuralNetwork::process(const values_matrix_t& img)
 
 void ConvolutionalNeuralNetwork::back_propagate(train_set& set)
 {
+    //propagate erro through last network
+    //propagate it to the input neurons
+    //error (vector) at input neurons = error at pooling
+
+    //propagate through pooling to find what network is responsible
+    //TODO always the same network -> no porpagating through pooling?
+
+    //repeat
+
 
 }
 
