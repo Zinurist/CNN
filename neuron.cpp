@@ -55,6 +55,8 @@ Neuron::Neuron(TYPE default_val, TYPE biasv, int size)
 
 
 
+//FORWARD FEEDING
+
 void Neuron::activate()
 {
     value = func(value);
@@ -103,6 +105,16 @@ void Neuron::feed_forward(const layer_t& layer)
     activate();
 }
 
+
+//BACKWARD FEEDING
+
+void Neuron::reverse_activate()
+{
+    value = func_inv(value);
+}
+
+
+//OTHER
 
 void Neuron::set_connections(TYPE default_val)
 {

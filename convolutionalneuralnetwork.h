@@ -33,6 +33,9 @@ public:
 private:
     std::vector<NeuralNetwork*> cnn;
     std::vector<Pooling*> pool;
+    std::vector<values_matrix_t> output_imgs;
+    std::vector<values_matrix_t> output_pools;
+
     std::vector<int> conv_width;
     std::vector<int> conv_height;
 

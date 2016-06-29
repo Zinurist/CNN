@@ -9,6 +9,7 @@ int main(int argc, char *argv[]){
 
     int testo_mnist[] = {28*28,28*28/4,10};
     std::vector<int> structure_mnist (testo_mnist, testo_mnist+3);
+    std::vector<int> s {28*28,28*28/4,10};
     NeuralNetwork nn(1.0, structure_mnist);
     nn.randomize_values(time(0), -1.0, 1.0);
 

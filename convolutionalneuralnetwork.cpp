@@ -7,6 +7,8 @@ ConvolutionalNeuralNetwork::ConvolutionalNeuralNetwork(const int* types, const i
 {
     cnn.resize(size);
     pool.resize(size);
+    output_imgs.resize(size);
+    output_pools.resize(size);
     conv_width.resize(size);
     conv_height.resize(size);
 
@@ -56,24 +58,26 @@ TYPE ConvolutionalNeuralNetwork::process(const values_matrix_t& img)
 
     values_t input;
     values_t output(1);
-    values_matrix_t* tmp_img;
-    values_matrix_t* input_img;
-    values_matrix_t* output_img;
+    //values_matrix_t* tmp_img;
+    const values_matrix_t* input_img;
+    //values_matrix_t* output_img;
     int output_width, output_height;
 
-    input_img = new values_matrix_t();
-    output_img = new values_matrix_t();
-    *input_img = img;
+    //input_img = new values_matrix_t();
+    //output_img = new values_matrix_t();
+    input_img = &img;
 
     for(int i=0; i<cnn.size(); i++){
         input.resize(cnn[i]->num_input);
 
         output_height = (*input_img).size() - conv_height[i] + 1;
         output_width = (*input_img)[0].size() - conv_width[i] + 1;
-        output_img->resize(output_height);
+        //output_img->resize(output_height);
+        output_imgs[i].resize(output_height);
 
         for(int y=0; y < output_height; y++){
-            (*output_img)[y].resize(output_width);
+            //(*output_img)[y].resize(output_width);
+            output_imgs[i][y].resize(output_width);
 
             for(int x=0; x < output_width; x++){
 
@@ -85,16 +89,19 @@ TYPE ConvolutionalNeuralNetwork::process(const values_matrix_t& img)
                 }
 
                 cnn[i]->process(input, output);
-                (*output_img)[y][x] = output[0];
+                //(*output_img)[y][x] = output[0];
+                output_imgs[i][y][x] = output[0];
             }
         }
 
         if(pool[i]){
-            pool[i]->pool(*output_img, *input_img);
+            pool[i]->pool(output_imgs[i], output_pools[i]);
+            input_img = &output_pools[i];
         }else{
-            tmp_img = input_img;
-            input_img = output_img;
-            output_img = tmp_img;
+            //tmp_img = input_img;
+            //input_img = output_img;
+            //output_img = tmp_img;
+            input_img = &output_imgs[i];
         }
 
     }
@@ -106,15 +113,13 @@ TYPE ConvolutionalNeuralNetwork::process(const values_matrix_t& img)
 
 void ConvolutionalNeuralNetwork::back_propagate(train_set& set)
 {
-    //propagate erro through last network
+    //propagate error through last network
     //propagate it to the input neurons
     //error (vector) at input neurons = error at pooling
 
-    //propagate through pooling to find what network is responsible
-    //TODO always the same network -> no porpagating through pooling?
+    //propagate through pooling to find what part of the previous image is responsible
 
-    //repeat
-
+    //save values during convolution
 
 }
 

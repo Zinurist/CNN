@@ -19,12 +19,16 @@ public:
     Neuron(TYPE default_val, int size);
     Neuron(TYPE default_val, TYPE bias, int size);
 
-    void feed_forward(const values_t& layer);
-    void feed(const values_t& layer);
+    //process
+    void feed_forward(const values_t& input);
     void feed_forward(const layer_t& layer);
+    void feed(const values_t& input);
     void feed(const layer_t& layer);
     void activate();
+    void reverse_activate();
 
+
+    //other
     void set_connections(TYPE default_val);
     size_t size();
     TYPE& operator[](size_t index);
@@ -36,7 +40,6 @@ public:
     TYPE get_connection_at(int connection) const;
     */
     void randomize_connections(TYPE min, TYPE max);
-
     void print() const;
 
     //serialization
@@ -48,6 +51,7 @@ public:
     friend std::istream& operator>>(std::istream& is, Neuron& n);
 
 
+    //data
     TYPE value;
     TYPE bias;
     values_t connections;
