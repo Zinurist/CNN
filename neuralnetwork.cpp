@@ -409,8 +409,6 @@ void NeuralNetwork::add_neuron(int layer, const Neuron& n)
     if(layer >= net.size()) throw "Invalid layer!";
     if(layer < 0) throw "Invalid layer!";
 
-    size_t size;
-
     net[layer].reserve(net[layer].size()+1);//maybe let vector handle reserving?
     net[layer].push_back(n);
 
